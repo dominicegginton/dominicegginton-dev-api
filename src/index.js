@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000
 
 /* SETUP KOA */
 const app = new Koa()
-app.use(cors({ origin: 'dominicegginton.dev' }))
+app.use(cors({ origin: 'https://dominicegginton.dev' }))
 app.use(router.routes())
 app.use(router.allowedMethods())
 
