@@ -13,6 +13,6 @@ const octokit = new Octokit({ auth: GITHUB_TOKEN, userAgent: 'api.dominicegginto
  * @returns list of users public repositories
  */
 export async function repositories (username) {
-  const response = await octokit.rest.repos.listForUser({ username: username, type: 'all', sort: 'updated', direction: 'desc', per_page: 10, page: 1 })
+  const response = await octokit.rest.repos.listForUser({ username: username, type: 'all', sort: 'pushed', direction: 'desc', per_page: 10, page: 1 })
   return response.data
 }
