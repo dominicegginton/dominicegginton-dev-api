@@ -18,10 +18,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Setup gcloud cli
+        uses: google-github-actions/setup-gcloud@v0.2
+        with:
+          service_account_key: ${{ secrets.GOOGLE_CREDENTIALS }}
+          project_id: ${{ secrets.DOCKER_USERNAME }}
+          export_default_credentials: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to the google cloud container registry
+        run: gcloud auth configure-docker --quiet
       - name: Log in to the github container registry
         uses: docker/login-action@v1
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Extract metadata for docker
