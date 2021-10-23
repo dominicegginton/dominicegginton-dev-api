@@ -1,6 +1,6 @@
 {
   "name": "api.dominicegginton.dev",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "main": "src/index.js",
   "type": "module",
   "private": true,
