@@ -2,7 +2,7 @@
 import Router from '@koa/router'
 
 /* IMPORT ROUTERS */
-import repositories from './repositories.js'
+import repositories from './repositories'
 
 /* SETUP ROUTER */
 const router = new Router()

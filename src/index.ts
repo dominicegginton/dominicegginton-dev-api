@@ -3,7 +3,7 @@ import Koa from 'koa'
 
 /* IMPORT MIDDLEWARE */
 import cors from '@koa/cors'
-import router from './routes/index.js'
+import router from './routes/index'
 
 /* ENVIRONMENT VARIABLES */
 const PORT = process.env.PORT || 3000
