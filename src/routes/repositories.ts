@@ -1,7 +1,7 @@
 /* IMPORT ROUTER */
 import Router from '@koa/router'
 
-import { repositories } from '../services/github.js'
+import { repositories } from '../services/github'
 
 /* SETUP ROUTER */
 const router = new Router()

@@ -1,18 +1,15 @@
 /* IMPORT MODULES */
 import { Octokit } from '@octokit/rest'
 
-/* ENVIRONMENT VARIABLES */
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN
-
 /* OCTOKIT */
-const octokit = new Octokit({ auth: GITHUB_TOKEN, userAgent: 'api.dominicegginton.dev' })
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN, userAgent: 'dominicegginton-dev-api' })
 
 /**
  * Lists public repositories for the specified user
- * @param {String} username username of user
+ * @param {string} username username of user
  * @returns list of users public repositories
  */
-export async function repositories (username) {
+export async function repositories (username: string) {
   const response = await octokit.repos.listForUser({ username: username, type: 'all', sort: 'pushed', direction: 'desc', per_page: 10, page: 1 })
   return response.data
 }
