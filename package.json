@@ -2,8 +2,6 @@
   "name": "api.dominicegginton.dev",
   "version": "1.2.0",
   "main": "src/index.js",
-  "private": true,
-  "license": "MIT",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
