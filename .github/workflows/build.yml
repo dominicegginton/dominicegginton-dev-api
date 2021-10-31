@@ -2,7 +2,7 @@ name: Build and publish
 on:
   release:
     types:
-    - published
+      - published
 
 env:
   REGISTRY: ghcr.io

@@ -1,13 +1,13 @@
 /* IMPORT ROUTER */
-import Router from '@koa/router'
+import Router from "@koa/router";
 
 /* IMPORT ROUTERS */
-import repositories from './repositories'
+import repositories from "./repositories";
 
 /* SETUP ROUTER */
-const router = new Router()
-router.prefix('/api')
-router.use(repositories.routes())
-router.use(repositories.allowedMethods())
+const router = new Router();
+router.prefix("/api");
+router.use(repositories.routes());
+router.use(repositories.allowedMethods());
 
-export default router
+export default router;
