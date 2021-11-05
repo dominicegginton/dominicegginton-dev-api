@@ -24,7 +24,7 @@
     "@types/koa": "^2.13.4",
     "@types/koa__cors": "^3.0.3",
     "@types/koa__router": "^8.0.9",
-    "eslint": "^7.32.0",
+    "eslint": "^8.1.0",
     "nodemon": "^2.0.14",
     "standard": "^16.0.4",
     "ts-node": "^10.4.0",
