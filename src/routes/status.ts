@@ -1,14 +1,13 @@
-/* IMPORT ROUTER */
 import Router from '@koa/router';
 
-import { repositories } from '../services/github';
+import { status } from '../services/github';
 
 /* SETUP ROUTER */
 const router = new Router();
-router.prefix('/repositories');
+router.prefix('/status');
 
 router.get('/', async (ctx) => {
-  ctx.body = await repositories();
+  ctx.body = await status();
 });
 
 export default router;
