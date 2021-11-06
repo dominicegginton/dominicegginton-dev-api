@@ -7,7 +7,9 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "lint": "eslint --ext ts src",
-    "format": "prettier .  --write"
+    "lint:fix": "eslint --ext ts src --fix",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
@@ -17,8 +19,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "koa": "^2.13.4",
-    "prettier": "^2.4.1"
+    "koa": "^2.13.4"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
@@ -26,6 +27,7 @@
     "@types/koa__router": "^8.0.9",
     "eslint": "^7.32.0",
     "nodemon": "^2.0.14",
+    "prettier": "^2.4.1",
     "standard": "^16.0.4",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"

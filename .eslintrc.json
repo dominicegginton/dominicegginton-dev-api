@@ -8,12 +8,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": [
-    "plugin:import/typescript",
-    "eslint:recommended",
-    "airbnb-base",
-    "prettier"
-  ],
+  "extends": ["plugin:import/typescript", "eslint:recommended", "airbnb-base", "prettier"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
