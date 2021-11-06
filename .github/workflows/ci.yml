@@ -1,0 +1,34 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  eslint:
+    name: Lint code with ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm i
+      - name: Lint
+        run: npm run lint
+  prettier:
+    name: Check file formatting with Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm i
+      - name: Lint
+        run: npm run prettier
