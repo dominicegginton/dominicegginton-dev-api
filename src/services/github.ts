@@ -1,10 +1,10 @@
 /* IMPORT MODULES */
-import { Octokit } from "@octokit/rest";
+import { Octokit } from '@octokit/rest';
 
 /* OCTOKIT */
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
-  userAgent: "dominicegginton-dev-api",
+  userAgent: 'dominicegginton-dev-api',
 });
 
 /**
@@ -15,9 +15,9 @@ const octokit = new Octokit({
 export default async function repositories(username: string) {
   const response = await octokit.repos.listForUser({
     username,
-    type: "all",
-    sort: "pushed",
-    direction: "desc",
+    type: 'all',
+    sort: 'pushed',
+    direction: 'desc',
     per_page: 10,
     page: 1,
   });
