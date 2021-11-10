@@ -1,7 +1,6 @@
 /* IMPORT MODULES */
-import { Octokit } from '@octokit/rest';
 import { graphql } from '@octokit/graphql';
-import type { GraphQlQueryResponseData } from '@octokit/graphql';
+import { User } from '@octokit/graphql-schema';
 
 const graphqlWithAuth = graphql.defaults({
   headers: {
@@ -10,32 +9,36 @@ const graphqlWithAuth = graphql.defaults({
   },
 });
 
-/* OCTOKIT */
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-  userAgent: 'dominicegginton-dev-api',
-});
-
-/**
- * Lists public repositories for the specified user
- * @param {string} username username of user
- * @returns list of users public repositories
- */
 export async function repositories() {
-  const response = await octokit.repos.listForAuthenticatedUser({
-    type: 'all',
-    sort: 'pushed',
-    direction: 'desc',
-    per_page: 10,
-    page: 1,
-  });
-  return response.data;
+  const response = await graphqlWithAuth<{ viewer: User }>(`
+    query repositories {
+      viewer {
+        repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC) {
+          nodes {
+            name
+            url
+            description
+            updatedAt
+            stargazerCount
+            languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
+              nodes {
+                color
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  return response.viewer.repositories.nodes;
 }
 
 export async function status() {
-  const response: GraphQlQueryResponseData = await graphqlWithAuth(`
-    {
-      user(login: "dominicegginton") {
+  const response = await graphqlWithAuth<{ viewer: User }>(`
+    query status {
+      viewer {
         status {
           emojiHTML
           message
@@ -44,5 +47,5 @@ export async function status() {
     }
   `);
 
-  return response.user.status;
+  return response.viewer.status;
 }
