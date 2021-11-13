@@ -1,6 +1,6 @@
 {
   "name": "dominicegginton-dev-api",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "src/index.js",
   "scripts": {
     "start": "node dist/index.js",
