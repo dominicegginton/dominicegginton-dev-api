@@ -1,4 +1,3 @@
-/* IMPORT MODULES */
 import { graphql } from '@octokit/graphql';
 import { User } from '@octokit/graphql-schema';
 
