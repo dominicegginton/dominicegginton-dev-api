@@ -8,4 +8,5 @@ app.use(cors({ origin: 'https://dominicegginton.dev' }));
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(process.env.PORT || 3000, () => console.info('Server started')); // eslint-disable-line no-console
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.info(`server started on port ${port}`)); // eslint-disable-line no-console
