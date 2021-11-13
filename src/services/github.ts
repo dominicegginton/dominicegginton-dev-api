@@ -4,7 +4,7 @@ import { User } from '@octokit/graphql-schema';
 const graphqlWithAuth = graphql.defaults({
   headers: {
     authorization: `token ${process.env.GITHUB_TOKEN}`,
-    'user-agent': 'dominicegginton-dev-api',
+    'user-agent': process.env.npm_package_name,
   },
 });
 
