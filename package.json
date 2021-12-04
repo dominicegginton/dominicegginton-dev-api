@@ -5,6 +5,7 @@
     "start": "node dist/main.js",
     "dev": "nodemon -r dotenv/config src/main.ts",
     "build": "tsc",
+    "clean": "rm -rf dist",
     "lint": "eslint --ext ts src",
     "lint:fix": "eslint --ext ts src --fix",
     "prettier": "prettier . --check",
