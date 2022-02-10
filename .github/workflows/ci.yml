@@ -9,7 +9,7 @@ on:
 
 jobs:
   eslint:
-    name: Lint code with ESLint
+    name: Check file formatting and lint source code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -20,15 +20,3 @@ jobs:
         run: npm i
       - name: Lint
         run: npm run lint
-  prettier:
-    name: Check file formatting with Prettier
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm i
-      - name: Lint
-        run: npm run prettier

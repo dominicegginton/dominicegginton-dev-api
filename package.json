@@ -6,10 +6,8 @@
     "dev": "nodemon -r dotenv/config src/main.ts",
     "build": "tsc",
     "clean": "rm -rf dist",
-    "lint": "eslint --ext ts src",
-    "lint:fix": "eslint --ext ts src --fix",
-    "prettier": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "lint": "prettier . --check && eslint --ext ts src",
+    "lint:fix": "prettier . --write && eslint --ext ts src --fix"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
