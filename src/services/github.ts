@@ -1,5 +1,5 @@
 import { graphql } from '@octokit/graphql';
-import { User } from '@octokit/graphql-schema';
+import { Repository, User } from '@octokit/graphql-schema';
 
 const graphqlWithAuth = graphql.defaults({
   headers: {
@@ -12,12 +12,12 @@ export async function repositories() {
   const response = await graphqlWithAuth<{ viewer: User }>(`
     query repositories {
       viewer {
-        repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, privacy: PUBLIC) {
+        repositories(first: 10, orderBy: {field: PUSHED_AT, direction: DESC}, privacy: PUBLIC) {
           nodes {
             name
             url
             description
-            updatedAt
+            pushedAt
             stargazerCount
             languages(orderBy: {field: SIZE, direction: DESC}, first: 1) {
               nodes {
@@ -34,17 +34,18 @@ export async function repositories() {
   return response.viewer.repositories.nodes;
 }
 
-export async function status() {
-  const response = await graphqlWithAuth<{ viewer: User }>(`
-    query status {
-      viewer {
-        status {
-          emojiHTML
-          message
+export async function readme() {
+  const response = await graphqlWithAuth<{ repository: Repository }>(`
+    query readme {
+      repository(owner: "dominicegginton", name: "dominicegginton") {
+        object(expression: "HEAD:README.md") {
+          ... on Blob {
+            text
+          }
         }
       }
     }
   `);
 
-  return response.viewer.status;
+  return response.repository.object;
 }

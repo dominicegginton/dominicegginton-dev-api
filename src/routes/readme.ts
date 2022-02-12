@@ -1,12 +1,12 @@
 import Router from '@koa/router';
-import { status } from '../services/github';
+import { readme } from '../services/github';
 
 const router = new Router();
 
-router.prefix('/status');
+router.prefix('/readme');
 
 router.get('/', async (ctx) => {
-  ctx.body = await status();
+  ctx.body = await readme();
 });
 
 export default router;
