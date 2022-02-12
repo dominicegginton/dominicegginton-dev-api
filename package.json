@@ -1,6 +1,6 @@
 {
   "name": "dominicegginton-dev-api",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "scripts": {
     "start": "node dist/main.js",
     "dev": "nodemon -r dotenv/config src/main.ts",
