@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Setup gcloud cli
-        uses: google-github-actions/setup-gcloud@v0.5.1
+        uses: google-github-actions/setup-gcloud@v0.6.0
         with:
           service_account_key: ${{ secrets.GOOGLE_CREDENTIALS }}
           project_id: ${{ secrets.GOOGLE_PROJECT }}
