@@ -20,7 +20,7 @@
     "@types/koa": "^2.13.4",
     "@types/koa__cors": "^3.1.1",
     "@types/koa__router": "^8.0.11",
-    "@typescript-eslint/parser": "^5.14.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
