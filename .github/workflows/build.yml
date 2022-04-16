@@ -24,12 +24,12 @@ jobs:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - name: Log in to the google cloud container registry
-        run: gcloud auth configure-docker europe-north1-docker.pkg.dev --quiet
+        run: gcloud auth configure-docker europe-north1-docker.pkg.dev
       - name: Extract metadata for docker
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: europe-north1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/${{ env.IMAGE_NAME }}
+          images: europe-north1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/registry/${{ env.IMAGE_NAME }}
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
