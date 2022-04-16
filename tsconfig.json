@@ -1,11 +1,10 @@
 {
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
-    "outDir": "./dist",
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es5"
-  }
+    "rootDir": ".",
+    "outDir": "build",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": ["src/**/*.ts"]
 }

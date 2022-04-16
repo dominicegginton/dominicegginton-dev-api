@@ -1,12 +1,32 @@
-import Koa from 'koa';
-import cors from '@koa/cors';
-import router from './routes/index';
+import 'reflect-metadata';
+import { createKoaServer, useContainer } from 'routing-controllers';
+import { Container } from 'typedi';
 
-const app = new Koa();
+import { ConfigService } from './services/config.service';
+import { LoggerService } from './services/logger.service';
+import { GithubService } from './services/github.service';
 
-app.use(cors({ origin: 'https://dominicegginton.dev' }));
-app.use(router.routes());
-app.use(router.allowedMethods());
+import { ReadmeController } from './controllers/readme.controller';
+import { RepositoriesController } from './controllers/repositories..controller';
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.info(`server started on port ${port}`)); // eslint-disable-line no-console
+async function main() {
+  Container.set(ConfigService, new ConfigService());
+  Container.set(LoggerService, new LoggerService(Container.get(ConfigService)));
+  Container.set(GithubService, new GithubService(Container.get(ConfigService)));
+  Container.set(ReadmeController, new ReadmeController(Container.get(GithubService)));
+  Container.set(RepositoriesController, new RepositoriesController(Container.get(GithubService)));
+  useContainer(Container);
+
+  const CONFIG = Container.get(ConfigService).config;
+  const LOGGER = Container.get(LoggerService);
+
+  const APP = createKoaServer({
+    cors: {
+      origin: CONFIG.CORS_ORIGIN,
+    },
+    controllers: [ReadmeController, RepositoriesController],
+  });
+  APP.listen(CONFIG.PORT, () => LOGGER.logger.info({ PORT: CONFIG.PORT }, 'server started'));
+}
+
+main();
