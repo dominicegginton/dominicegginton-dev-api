@@ -1,6 +1,6 @@
 {
   "name": "dominicegginton-dev-api",
-  "version": "1.12.4",
+  "version": "1.12.5",
   "scripts": {
     "start": "node build/src/main.js",
     "dev": "nodemon -r tsconfig-paths/register -r dotenv/config src/main.ts | pino-pretty",
