@@ -2,14 +2,9 @@
 
 The API source code that powers [dominicegginton.dev](https://dominicegginton.dev), my personal piece of the internet, feel free to check it out.
 
-## Built With
+## Development
 
-- [KoaJS](https://github.com/koajs/koa)
-- [TypeScript](https://github.com/microsoft/TypeScript)
-
-## Environment Variables
-
-Please contact project team for required environment variables
+### Environment Variables
 
 | Variable Name | Description                  | Required | Default |
 | ------------- | ---------------------------- | -------- | ------- |

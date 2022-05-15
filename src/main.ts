@@ -1,26 +1,11 @@
-import 'reflect-metadata';
-import { createKoaServer, useContainer } from 'routing-controllers';
-import { Container } from 'typedi';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
 
-import { ConfigService } from './services/config.service';
-import { LoggerService } from './services/logger.service';
-
-import { ReadmeController } from './controllers/readme.controller';
-import { RepositoriesController } from './controllers/repositories..controller';
-
-async function main() {
-  useContainer(Container);
-
-  const CONFIG = Container.get(ConfigService).config;
-  const LOGGER = Container.get(LoggerService).logger;
-
-  const APP = createKoaServer({
-    cors: {
-      origin: CONFIG.CORS_ORIGIN,
-    },
-    controllers: [ReadmeController, RepositoriesController],
-  });
-  APP.listen(CONFIG.PORT, () => LOGGER.info({ PORT: CONFIG.PORT }, 'server started'));
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const configService: ConfigService = app.get<ConfigService>(ConfigService);
+  app.enableCors({ origin: configService.get('CORE.CORS_ORIGIN') });
+  await app.listen(configService.get<number | undefined>('CORE.PORT'));
 }
-
-main();
+bootstrap();
