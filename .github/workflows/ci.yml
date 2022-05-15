@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  eslint:
-    name: Check file formatting and lint source code
+  lint:
+    name: Check file formatting and code linting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,3 +20,31 @@ jobs:
         run: npm i
       - name: Lint
         run: npm run lint
+      - name: Format Files
+        run: npm run format
+
+  unit-test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm i
+      - name: Test
+        run: npm run test
+
+  e2e-test:
+    name: End to end tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm i
+      - name: Test
+        run: npm run test:e2e
